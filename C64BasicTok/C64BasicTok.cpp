@@ -100,8 +100,6 @@ static std::unordered_map<uint8_t, std::string> TokenToBasicKeyword = [] {
     return rev;
     }();
 
-
-
   // Updated struct to allow for branching (Trie structure)
 struct ParseNode {
     char ch;
@@ -1029,7 +1027,7 @@ static std::vector<uint8_t> Tokenize(const std::string& str)
             if (tok == quote) {
                 do
                 {
-                    pos ++;
+                    pos++;
                     out.push_back(str[pos]);
                 } while (str[pos] != quote[0]);
             }
@@ -1067,24 +1065,47 @@ static std::string read_file_iterator(const std::string& filepath) {
         std::istreambuf_iterator<char>());
 }
 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <cstdint>
+
 int main(int argc, char* argv[])
 {
-    if (argc < 2)
+    // We expect exactly 3 arguments: the program name, input file, and output file
+    if (argc != 3)
     {
-        std::cout << "No input file provided.";
-		return 1;
+        std::clog << "Usage: " << argv[0] << " <input_file> <output_file>\n";
+        return 1;
     }
 
-	for (auto i = 1; i < argc; ++i)
-	{
-		std::string input = read_file_iterator(argv[i]);
-		auto out = Tokenize(input);
-		auto detok = Detokenize(out);
-		if (detok != input)
-		{
-			std::cout << "input\n" << input << "\n============\n";
-			std::cout << "detok\n" << detok << "\n============\n";
-		}
-	}
+    std::string input_path = argv[1];
+    std::string output_path = argv[2];
+
+    std::string input = read_file_iterator(input_path);
+    std::vector<uint8_t> out = Tokenize(input);
+    auto detok = Detokenize(out);
+
+    if (detok != input)
+    {
+        std::cout << "Mismatch detected in file: " << input_path << "\n";
+        std::cout << "input\n" << input << "\n============\n";
+        std::cout << "output\n" << detok << "\n============\n";
+        return 1;
+    }
+
+    // Open the output file in binary mode to write the raw uint8_t vector
+    std::ofstream out_file(output_path, std::ios::binary);
+    if (!out_file)
+    {
+        std::cerr << "Error: Could not open output file " << output_path << "\n";
+        return 1;
+    }
+
+    // Write the vector data safely by casting the pointer to const char*
+    out_file.write(reinterpret_cast<const char*>(out.data()), out.size());
+
+    std::cout << "File processed successfully. Binary data saved to: " << output_path << "\n";
     return 0;
 }
