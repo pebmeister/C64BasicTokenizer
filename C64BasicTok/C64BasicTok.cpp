@@ -1029,7 +1029,7 @@ static std::vector<uint8_t> Tokenize(const std::string& str)
             if (tok == quote) {
                 do
                 {
-                    pos += result.length;
+                    pos ++;
                     out.push_back(str[pos]);
                 } while (str[pos] != quote[0]);
             }
