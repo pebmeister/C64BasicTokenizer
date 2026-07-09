@@ -36,7 +36,7 @@ static const std::unordered_map<std::string, uint8_t> BasicKeywordToToken{
     {"input",      0x85},
     {"dim",        0x86},
     {"read",       0x87},
-    {"let",        0x88
+    {"let",        0x88},
     {"goto",       0x89},
     {"run",        0x8A},
     {"if",         0x8B},
