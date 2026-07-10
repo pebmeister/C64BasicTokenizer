@@ -1,2 +1,2 @@
 # C64BasicTokenizer
-Takes a basiuc text file and tokenizes it into c64 basic v2
+Takes a basic text file and tokenizes it into c64 basic v2
