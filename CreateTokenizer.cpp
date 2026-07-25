@@ -63,17 +63,11 @@ int main(int argc, char* argv[])
     // std::map<std::string, int> keywordToToken;
     auto& csvfile = opt.csvTokenFile;
     auto& outfile = opt.outputHeaderFile;
-    auto ignoreCase = opt.ignoreCase;
-
-    std::vector<std::pair<int, std::string>> toks;
+    auto ignoreCase = opt.ignoreCase;;
 
     try {
 
-        auto csvToks = csvReader::ReadCSV(csvfile);
-        for (auto& tok: csvToks) {
-            toks.push_back({tok.first, tok.second});
-        }
-
+        auto toks = csvReader::ReadCSV(csvfile);
         Tokenizer tokenizer(toks, outfile, ignoreCase);
 
         std::cout << outfile << " created!\n";
