@@ -222,7 +222,7 @@ int main(int argc, char* argv[])
         auto out_file = argv[2];
       
         fs::path in_file_path(in_file);
-        if (!fs::exits(in_file_path) {
+        if (!fs::exists(in_file_path) {
             throw std::runtime_error(in_file + " does not exist.");
         }
         fs::path full_path = fs::absolute(in_file_path);
