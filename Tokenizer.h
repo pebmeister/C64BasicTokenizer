@@ -99,9 +99,8 @@ private:
 			}
 			char_class[c] = signature_to_class[sig];
 			if (ignoreCase) {
-					char_class[std::toupper(c)] = signature_to_class[sig];
+				char_class[std::toupper(c)] = signature_to_class[sig];
 			}
-			
 		}
 
 		// d. Build the compressed table [num_states][num_classes]
@@ -223,7 +222,6 @@ private:
 		});
 
 		for (const auto& [tok, str] : toks) {
-
 			insertToken(root, tok, str);
 		}
 	}
@@ -247,5 +245,4 @@ public:
 		buildtoktree(toks);
 		generateTokenizer(outfile);
 	}
-
 };
