@@ -150,7 +150,6 @@ static struct LineOutput TokenizeLine(const int current_address, const std::stri
     return output;
 }
 
-
 static std::vector<uint8_t> TokenizeString(std::string& str)
 {
     std::vector<uint8_t> output;
