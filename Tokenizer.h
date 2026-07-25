@@ -99,8 +99,9 @@ private:
 			}
 			char_class[c] = signature_to_class[sig];
 			if (ignoreCase) {
-				char_class[std::toupper(c)] = signature_to_class[sig];
+					char_class[std::toupper(c)] = signature_to_class[sig];
 			}
+			
 		}
 
 		// d. Build the compressed table [num_states][num_classes]
@@ -215,20 +216,21 @@ private:
 		curnode->token = token;
 	}
 
-	void buildtoktree(std::vector<std::pair<int, std::string>>& toks)
+	void buildtoktree(std::vector<std::pair<std::string, int>>& toks)
 	{
 		std::sort(toks.begin(), toks.end(), [](const auto& a, const auto& b) {
 			return a.second < b.second;
 		});
 
-		for (const auto& [tok, str] : toks) {
+		for (const auto& [str, tok] : toks) {
+
 			insertToken(root, tok, str);
 		}
 	}
 
 public:
 
-	Tokenizer(std::vector<std::pair<std::string, int>> toks, std::string outfile, bool ignorecase)
+	Tokenizer(std::vector<std::pair<std::string, int>>& toks, std::string outfile, bool ignorecase)
 	{
 		ignoreCase = ignorecase;
 		for (const auto& [s, tok] : toks) {
@@ -245,4 +247,5 @@ public:
 		buildtoktree(toks);
 		generateTokenizer(outfile);
 	}
+
 };
