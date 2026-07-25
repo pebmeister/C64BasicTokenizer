@@ -228,7 +228,7 @@ int main(int argc, char* argv[])
             throw std::runtime_error(in_file + " does not exist.");
         }
         fs::path full_path = fs::absolute(in_file_path);
-				auto out = TokenizeFile(full_path);
+		auto out = TokenizeFile(full_path);
 
         std::ofstream file(out_file, std::ios::out | std::ios::binary);
         if (!file.is_open()) {
