@@ -230,10 +230,10 @@ private:
 
 public:
 
-	Tokenizer(std::vector<std::pair<int, std::string>> toks, std::string outfile, bool ignorecase)
+	Tokenizer(std::vector<std::pair<std::string, int>> toks, std::string outfile, bool ignorecase)
 	{
 		ignoreCase = ignorecase;
-		for (const auto& [tok, s] : toks) {
+		for (const auto& [s, tok] : toks) {
 			auto str = s;
 			if (ignoreCase) {
 				std::transform(str.begin(), str.end(), str.begin(),
