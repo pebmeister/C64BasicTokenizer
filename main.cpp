@@ -10,8 +10,6 @@
 #include <iomanip>
 namespace fs = std::filesystem;
 
-#include "d64.h"
-#include "d64_types.h"
 #include "ParseTree.h"
 
 struct LineOutput
