@@ -236,7 +236,7 @@ int main(int argc, char* argv[])
         file.close();
     }
     catch (const std::exception& ex) {
-        std::clog << "ERROR: " << curFile << " " << ex.what() << std::endl;
+        std::clog << "ERROR: " << ex.what() << std::endl;
     }
     catch (...) {
         std::clog << "Unknown error";
