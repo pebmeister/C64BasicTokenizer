@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
 
         auto csvToks = csvReader::ReadCSV(csvfile);
         for (auto& tok: csvToks) {
-            toks.push_back({tok.second, tok.first});
+            toks.push_back({tok.first, tok.second});
         }
 
         Tokenizer tokenizer(toks, outfile, ignoreCase);
