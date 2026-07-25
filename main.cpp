@@ -223,7 +223,7 @@ int main(int argc, char* argv[])
       
         fs::path in_file_path(in_file);
         if (!fs::exists(in_file_path)) {
-            throw std::runtime_error(in_file + " does not exist.");
+            throw std::runtime_error(in_file + std::string(" does not exist."));
         }
         fs::path full_path = fs::absolute(in_file_path);
 		auto out = TokenizeFile(full_path);
